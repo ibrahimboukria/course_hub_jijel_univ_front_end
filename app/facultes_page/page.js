@@ -37,7 +37,7 @@ const faculties = [
     color: "from-blue-500 to-indigo-600",
   },
   {
-    href: "/science-technology",
+    href: "/Sience-et-technologie",
     title: "Science and Technology",
     icon: FlaskConical,
     color: "from-orange-400 to-rose-500",
@@ -129,7 +129,7 @@ export default function FacultesPage() {
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
             {faculties.map(({ href, title, icon: Icon, color }) => (
               <Link
-                key={href}
+                key={title}
                 href={href}
                 className="group flex flex-col items-center justify-center gap-4 text-center min-h-64 bg-white/80 backdrop-blur border border-white rounded-2xl p-6 shadow hover:scale-105 hover:shadow-xl transition "
               >
