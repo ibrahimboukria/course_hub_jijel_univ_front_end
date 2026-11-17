@@ -4,21 +4,21 @@ import { Laptop, Atom, Sigma, ChevronRight, ArrowLeft } from "lucide-react";
 const SUBJECTS = [
   {
     name: "Computer science",
-    href: "/IT",
+    href: "/exact-sciences/IT",
     icon: Laptop,
     color: "from-blue-500 to-indigo-600",
     shadow: "shadow-blue-200",
   },
   {
     name: "Physique",
-    href: "/physique",
+    href: "/exact-sciences/physique",
     icon: Atom,
     color: "from-emerald-500 to-teal-600",
     shadow: "shadow-emerald-200",
   },
   {
     name: "Math",
-    href: "/math",
+    href: "/exact-sciences/math",
     icon: Sigma,
     color: "from-orange-400 to-rose-500",
     shadow: "shadow-orange-200",
