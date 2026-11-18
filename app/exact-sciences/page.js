@@ -51,7 +51,7 @@ export default function Exactseince() {
           
           {SUBJECTS.map(({ name, href, icon: Icon,color,shadow }) =>(
           <Link
-              key={href} href={href}
+              key={name} href={href}
               className={`group relative flex sm:flex-col items-center gap-4 sm:gap-3 rounded-2xl bg-gradient-to-br ${color} text-white p-4 sm:p-6 shadow-lg ${shadow} transition hover:-translate-y-1 hover:shadow-xl`}
             >
               <span className="shrink-0 p-2.5 rounded-xl bg-white/20">

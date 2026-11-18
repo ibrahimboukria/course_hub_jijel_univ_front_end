@@ -68,9 +68,9 @@ export default function ST(){
   <h1>Specialites</h1>
 
   <div className="flex flex-wrap gap-4">
-    {Specialites.map((spe) => (
+    {Specialites.map((spe,index) => (
       <Link
-        key={spe.href}
+        key={index}
         href={spe.href}
         className="flex items-center gap-4 bg-white border border-slate-200 rounded-2xl p-5 hover:bg-blue-50"
 

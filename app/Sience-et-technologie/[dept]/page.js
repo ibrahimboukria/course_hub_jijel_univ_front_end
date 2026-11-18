@@ -1,5 +1,5 @@
 'use client';
-
+import { Suspense } from 'react';
 import Link from 'next/link';
 import { useState } from 'react';
 import { ChevronLeft, ChevronRight, GraduationCap } from 'lucide-react';
@@ -20,7 +20,7 @@ const selectedStyle = "flex items-center justify-between rounded-xl border borde
  
  
   
-  export default function DepartmentPage() {
+  function DepartmentPageContent() {
     
  
  //important
@@ -40,10 +40,22 @@ const selectedStyle = "flex items-center justify-between rounded-xl border borde
   
   
     async function opensemester(n) {
-    const key = `${dept}-${level}-${n}`
-    console.log(key);
+    const selection = 
+    {
+      faculter : dept,
+      Level : level,
+      semester : n,
+
+    }
+    const res = await fetch('/api',
+      {
+     method :"POST",
+     headers : {"Content-Type":"application/json"},
+     body:JSON.stringify(selection)
+    })
     
   }
+  
 //important +++++ line 109
   
   
@@ -134,4 +146,11 @@ const selectedStyle = "flex items-center justify-between rounded-xl border borde
       </div>
     </main>
   );
+}
+export default function DepartmentPage(){
+  return(
+    <Suspense fallback={<div>loading...</div>}>
+      <DepartmentPageContent />
+    </Suspense>
+  )
 }
