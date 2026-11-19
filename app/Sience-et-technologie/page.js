@@ -55,7 +55,7 @@ export default function ST(){
 
           <div>
             <Link className="flex flex-col items-center gap-3 bg-white border border-slate-200 rounded-2xl p-5 hover:bg-green-50"
-            href="/STL1"
+            href="/ST1"
             >
               <div className="bg-green-500 p-3 rounded-xl">
                 <Atom className="text-white" />

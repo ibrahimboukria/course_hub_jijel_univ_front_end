@@ -42,7 +42,8 @@ const selectedStyle = "flex items-center justify-between rounded-xl border borde
     async function opensemester(n) {
     const selection = 
     {
-      faculter : dept,
+      faculter : "sience exact ",
+      specialiter : dept,
       Level : level,
       semester : n,
 
