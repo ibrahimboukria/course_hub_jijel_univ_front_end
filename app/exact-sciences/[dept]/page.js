@@ -48,7 +48,9 @@ const selectedStyle = "flex items-center justify-between rounded-xl border borde
       semester : n,
 
     }
-   const res = await fetch('/api',
+   try
+   {
+    const res = await fetch('/api',
       {
      method :"POST",
      headers : {"Content-Type":"application/json"},
@@ -56,7 +58,12 @@ const selectedStyle = "flex items-center justify-between rounded-xl border borde
     })
     
     
+  }catch(error){
+    console.log(error)
   }
+
+   }
+    
 //important +++++ line 109
   
   

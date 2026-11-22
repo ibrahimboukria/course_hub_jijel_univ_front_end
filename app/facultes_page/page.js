@@ -4,7 +4,6 @@ import Link from "next/link";
 import DotGrid from "./DotGrid"
 import { useState } from "react";
 import {
-  Search,
   GraduationCap,
   Sparkles,
   Star,
@@ -43,7 +42,7 @@ const faculties = [
     color: "from-orange-400 to-rose-500",
   },
   {
-    href: "/science-technology",
+    href: "/Medecine",
     title: "Medecine",
     icon: Zap,
     color: "from-rose-400 to-green-500",
@@ -61,9 +60,11 @@ export default function FacultesPage() {
   const[query,setquery]=useState("");
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-900 via-blue-950 to-indigo-900 p-4 sm:p-8   flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12">
+    <main className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-900 via-blue-950 to-indigo-900 p-4 pt-24 sm:p-8 sm:pt-28   flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12">
   <ParallaxBg />
   <DotGrid />
+
+
       
 <div className="pointer-events-none absolute -top-20 -left-20 w-96 h-96 rounded-full bg-indigo-500/40 blur-3xl" />
 <div className="pointer-events-none absolute -bottom-20 -right-20 w-96 h-96 rounded-full bg-orange-400/30 blur-3xl" />
@@ -77,18 +78,18 @@ export default function FacultesPage() {
         />
       ))}
 
-      <div className="relative z-10 w-full max-w-4xl overflow-hidden rounded-[3rem] border border-white/60 bg-white/70 backdrop-blur-xl shadow-2xl p-6 sm:p-10">
+      <div className="fade-up relative z-10 w-full max-w-4xl overflow-hidden rounded-[3rem] border border-white/60 bg-white/70 backdrop-blur-xl shadow-2xl p-6 sm:p-10">
         <div className="relative flex flex-col gap-6 w-full">
           <div className="flex flex-col gap-2">
             <div className="inline-flex items-center gap-2 self-start px-3 py-1 rounded-full bg-white/70 backdrop-blur">
-              <Sparkles className="w-4 h-4 text-orange-500" />
+              <Sparkles className="w-4 h-4 text-orange-500 animate-pulse" />
               <p className="text-sm font-semibold text-blue-600">Welcome</p>
             </div>
-            <div className="relative z-10 flex shrink-0 justify-center lg:w-[30%]">
+            <div className="relative z-10 flex shrink-0 justify-center w-full">
   <img
-    src="/fond.png"
+    src="/espy.png"
     alt="Esperanza Club"
-    className="drift w-64 lg:w-full object-contain drop-shadow-[0_0_25px_rgba(34,211,238,0.35)]"
+    className="drift w-64 object-contain drop-shadow-[0_0_25px_rgba(34,211,238,0.35)]"
   />
 </div>
 
@@ -96,29 +97,16 @@ export default function FacultesPage() {
            
             <h1 className="text-3xl font-extrabold tracking-tight text-gray-900">
               Find your course in <br />
-              <span className="bg-gradient-to-r from-blue-600 to-orange-500 bg-clip-text text-transparent">
+              <span className="gradient-text bg-gradient-to-r from-blue-600 via-orange-500 to-blue-600 bg-clip-text text-transparent">
                 seconds
               </span>
             </h1>
           </div>
 
-          <div className="relative w-full">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-blue-400" />
-            
-            
-            
-            <input
-              type="text"
-              placeholder="Search a module..."
-              className="w-full pl-11 pr-4 py-3 bg-white/80 backdrop-blur border border-white rounded-2xl shadow focus:outline-none focus:ring-2 focus:ring-blue-300"
-              onChange={(e)=>setquery(e.target.value)}
-            />
-          </div>
-
           
           
           
-          <div className="flex items-center gap-2 text-blue-700">
+          <div id="faculties" className="flex items-center gap-2 text-blue-700">
             <GraduationCap className="w-5 h-5" />
             <h2 className="font-semibold">Faculties</h2>
             <span className="ml-auto px-2 py-0.5 text-xs font-semibold rounded-full bg-blue-100 text-blue-700">
@@ -127,17 +115,18 @@ export default function FacultesPage() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-            {faculties.map(({ href, title, icon: Icon, color }) => (
+            {faculties.map(({ href, title, icon: Icon, color }, i) => (
               <Link
                 key={title}
                 href={href}
-                className="group flex flex-col items-center justify-center gap-4 text-center min-h-64 bg-white/80 backdrop-blur border border-white rounded-2xl p-6 shadow hover:scale-105 hover:shadow-xl transition "
+                style={{ animationDelay: `${300 + i * 150}ms` }}
+                className="fade-up group flex flex-col items-center justify-center gap-4 text-center min-h-64 bg-white/80 backdrop-blur border border-white rounded-2xl p-6 shadow hover:-translate-y-2 hover:scale-105 hover:shadow-2xl transition duration-300"
               >
-                <div className={`p-4 rounded-xl bg-gradient-to-br ${color} text-white shadow`}>
+                <div className={`p-4 rounded-xl bg-gradient-to-br ${color} text-white shadow transition duration-300 group-hover:rotate-6 group-hover:scale-110`}>
                   <Icon className="w-8 h-8" />
                 </div>
                 <h3 className="font-medium text-gray-900">{title}</h3>
-                <ChevronRight className="w-5 h-5 text-gray-400 transition group-hover:translate-x-1" />
+                <ChevronRight className="w-5 h-5 text-gray-400 transition duration-300 group-hover:translate-x-2" />
               </Link>
             ))}
           </div>
