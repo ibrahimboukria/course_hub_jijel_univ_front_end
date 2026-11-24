@@ -13,6 +13,7 @@ import {
   FlaskConical,
   ChevronRight,
   Zap,
+   Home 
 } from "lucide-react";
 
 const floating = [
@@ -20,12 +21,12 @@ const floating = [
   { Icon: Atom, style: "top-[20%] right-[8%]", delay: "1s", size: "w-12 h-12" },
   { Icon: BookOpen, style: "bottom-[15%] left-[6%]", delay: "2s", size: "w-10 h-10" },
   { Icon: GraduationCap, style: "bottom-[10%] right-[12%]", delay: "3s", size: "w-12 h-12" },
-  { Icon: Star, style: "top-[50%] left-[3%]", delay: "4s", size: "w-6 h-6" },
-  { Icon: Star, style: "top-[60%] right-[4%]", delay: "5s", size: "w-7 h-7" },
-  { Icon: Star, style: "top-[5%] right-[30%]", delay: "1.5s", size: "w-9 h-9" },
+  { Icon: BookOpen, style: "top-[50%] left-[3%]", delay: "4s", size: "w-6 h-6" },
+  { Icon: BookOpen, style: "top-[60%] right-[4%]", delay: "5s", size: "w-7 h-7" },
+  { Icon: BookOpen, style: "top-[5%] right-[30%]", delay: "1.5s", size: "w-9 h-9" },
 { Icon: BookOpen, style: "top-[35%] left-[5%]", delay: "2.5s", size: "w-12 h-12" },
 { Icon: Atom, style: "bottom-[30%] right-[3%]", delay: "3.5s", size: "w-10 h-10" },
-{ Icon: Star, style: "bottom-[5%] left-[35%]", delay: "0.5s", size: "w-8 h-8" },
+{ Icon: BookOpen, style: "bottom-[5%] left-[35%]", delay: "0.5s", size: "w-8 h-8" },
 ];
 
 const faculties = [
@@ -44,7 +45,7 @@ const faculties = [
   {
     href: "/Medecine",
     title: "Medecine",
-    icon: Zap,
+    icon: BookOpen,
     color: "from-rose-400 to-green-500",
   },
 ];
@@ -78,10 +79,10 @@ export default function FacultesPage() {
         />
       ))}
 
-      <div className="fade-up relative z-10 w-full max-w-4xl overflow-hidden rounded-[3rem] border border-white/60 bg-white/70 backdrop-blur-xl shadow-2xl p-6 sm:p-10">
-        <div className="relative flex flex-col gap-6 w-full">
-          <div className="flex flex-col gap-2">
-            <div className="inline-flex items-center gap-2 self-start px-3 py-1 rounded-full bg-white/70 backdrop-blur">
+      <div className="fade-up relative z-10 w-full max-w-4xl overflow-hidden rounded-[3rem] border border-white/60 bg-white/70 backdrop-blur-xl shadow-2xl p-4 sm:p-10">
+        <div className="relative flex flex-col  w-full">
+          <div className="flex flex-col">
+            <div className="inline-flex items-center  self-start px-3 py-1 rounded-full bg-white/70 backdrop-blur">
               <Sparkles className="w-4 h-4 text-orange-500 animate-pulse" />
               <p className="text-sm font-semibold text-blue-600">Welcome</p>
             </div>
@@ -89,7 +90,7 @@ export default function FacultesPage() {
   <img
     src="/espy.png"
     alt="Esperanza Club"
-    className="drift w-64 object-contain drop-shadow-[0_0_25px_rgba(34,211,238,0.35)]"
+    className=" w-40 object-contain drop-shadow-[0_0_25px_rgba(34,211,238,0.35)]"
   />
 </div>
 
@@ -107,8 +108,7 @@ export default function FacultesPage() {
           
           
           <div id="faculties" className="flex items-center gap-2 text-blue-700">
-            <GraduationCap className="w-5 h-5" />
-            <h2 className="font-semibold">Faculties</h2>
+            
             <span className="ml-auto px-2 py-0.5 text-xs font-semibold rounded-full bg-blue-100 text-blue-700">
               {faculties.length}
             </span>

@@ -61,9 +61,9 @@ const selectedStyle = "flex items-center justify-between rounded-xl border borde
   
   
   return (
-    <main className="min-h-screen w-full bg-gradient-to-br from-blue-50 via-slate-50 to-blue-200 flex justify-center items-start sm:items-center p-3 sm:p-6">
+    <main className="min-h-screen w-full bg-gradient-to-br from-blue-50 via-slate-50 to-blue-200 flex justify-center items-start sm:items-center p-3 sm:p-6  ">
     
-      <div className="w-full max-w-3xl bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-[0_20px_50px_-15px_rgba(30,58,138,0.25)] overflow-hidden">
+     <div className="w-full max-w-3xl bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-[0_20px_50px_-15px_rgba(30,58,138,0.25)] overflow-hidden pt-10">
         
         
         

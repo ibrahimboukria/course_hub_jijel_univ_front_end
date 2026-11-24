@@ -68,9 +68,9 @@ const selectedStyle = "flex items-center justify-between rounded-xl border borde
   
   
   return (
-    <main className="min-h-screen w-full bg-gradient-to-br from-blue-50 via-slate-50 to-blue-200 flex justify-center items-start sm:items-center p-3 sm:p-6">
+    <main className="min-h-screen w-full bg-gradient-to-br from-blue-50 via-slate-50 to-blue-200 flex justify-center items-start sm:items-center  sm:p-6 ">
     
-      <div className="w-full max-w-3xl bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-[0_20px_50px_-15px_rgba(30,58,138,0.25)] overflow-hidden">
+     <div className="w-full max-w-3xl bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-[0_20px_50px_-15px_rgba(30,58,138,0.25)] overflow-hidden mt-5 ">
         
         
         
@@ -78,7 +78,7 @@ const selectedStyle = "flex items-center justify-between rounded-xl border borde
         <div className="p-5 sm:p-8">
          
           <Link
-            href="/exact-sciences"
+            href="/facultes_page"
             className="inline-flex items-center gap-1 text-sm text-slate-500 hover:text-blue-800 transition rounded-lg focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-200"
           >
             <ChevronLeft strokeWidth={1.75} className="w-4 h-4" />
