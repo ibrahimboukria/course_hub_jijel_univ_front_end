@@ -7,9 +7,18 @@ type SELECTION =
     semester : any
 
 }
+
 export async function POST(request:Request)
 {
-    const body : SELECTION = await request.json();
+    try{ const body : SELECTION = await request.json();
     console.log(body)
     return NextResponse.json(body);
+    }catch(error){
+        console.log(error)
+         return NextResponse.json(
+            {error : "Invalid request"},
+            {status : 400});
+    }
+    
 }
+   

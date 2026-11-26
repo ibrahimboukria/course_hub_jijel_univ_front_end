@@ -1,0 +1,157 @@
+/*
+HELLO BRHOOM HADA descrebtion ll project 
+mktob bl ai ok!
+================================================================================
+ COURSE-HUB : شرح المشروع
+================================================================================
+
+1. فكرة المشروع
+----------------
+منصة جامعية للدروس. الطالب يتنقل بهذا الترتيب:
+
+    الكلية -> التخصص -> المستوى (ليسانس / ماستر) -> السداسي
+
+عند الضغط على سداسي، ترسل الواجهة اختيار الطالب إلى الباك اند
+عبر طلب POST إلى المسار /api.
+
+
+2. التقنيات
+------------
+- Next.js (App Router، مجلد app/)
+- React و Tailwind CSS وأيقونات lucide-react
+- مجلد المشروع: course-hub/my-app
+- منشور على Vercel
+- الباك اند هو Route Handler داخل Next.js مكتوب بـ TypeScript
+  في الملف app/api/route.tsx
+- التشغيل محلياً: npm run dev
+
+
+3. هيكل المجلدات (داخل my-app/app)
+-----------------------------------
+app/
+ |- layout.tsx التخطيط العام للموقع والخطوط
+ |- globals.css التنسيقات العامة
+ |- api/route.tsx نقطة الباك اند (POST /api)
+ |- facultes_page/
+ | |- page.js الصفحة الرئيسية: تعرض الكليات الثلاث
+ | |- DotGrid.js مكوّن خلفية بصرية
+ | |- parallaxBg.js مكوّن خلفية بصرية
+ |- headers/page.js الهيدر
+ |- exact-sciences/
+ | |- page.js أقسام كلية العلوم الدقيقة والإعلام الآلي
+ | |- [dept]/page.js صفحة ديناميكية: اختيار المستوى والسداسي (تستدعي الـ API)
+ |- Sience-et-technologie/
+ | |- page.js تخصصات كلية العلوم والتكنولوجيا (المكوّن ST)
+ | |- [dept]/page.js صفحة ديناميكية لكل تخصص
+ |- Medecine/page.js صفحة كلية الطب
+ |- ST1/page.js صفحة ST1
+
+
+4. البيانات الموجودة في الواجهة
+--------------------------------
+
+4.1 الكليات (facultes_page/page.js -> faculties)
+    - "Exact science and computer science" الرابط: /exact-sciences
+    - "Science and Technology" الرابط: /Sience-et-technologie
+    - "Medecine" الرابط: /Medecine
+    وكل كلية لها أيضاً icon و color للتصميم فقط.
+
+4.2 أقسام العلوم الدقيقة (exact-sciences/page.js -> SUBJECTS)
+    - Computer science الرابط: /exact-sciences/IT
+    - Physique الرابط: /exact-sciences/physique
+    - Math الرابط: /exact-sciences/math
+    آخر جزء من الرابط (IT أو physique أو math) هو المتغير dept
+    الذي تقرأه الصفحة الديناميكية [dept].
+
+4.3 تخصصات العلوم والتكنولوجيا (Sience-et-technologie/page.js -> Specialites)
+    الاسم الرمز في الرابط
+    - Telecom TL
+    - automatic AT
+    - Electronic ELC
+    - Genie civil GC
+    - Genie mecanique GM
+    - Architecture Architecture
+    - Genie des Procedes GP
+    - Electrotechnique Electrotechnique
+    (الرابط على الشكل: Sience-et-technologie/<الرمز>)
+
+4.4 المستويات والسداسيات (exact-sciences/[dept]/page.js)
+    - ليسانس (licence): 6 سداسيات 'Semestre 1' ... 'Semestre 6'
+    - ماستر (master) : 4 سداسيات 'Semestre 1' ... 'Semestre 4'
+    الصفحة تستعمل حالتين (useState):
+        sem السداسي المختار، قيمته الابتدائية 0
+        level المستوى المختار، قيمته الابتدائية 'licence'
+    والدالة changeLevel(value) تغيّر المستوى بين 'licence' و 'master'،
+    فتتغير قائمة السداسيات المعروضة تبعاً له.
+
+
+5. ماذا يحدث عند ضغط الطالب على سداسي
+----------------------------------------
+1) يفتح الطالب مثلاً الصفحة /exact-sciences/IT
+   فيكون dept = "IT" (يؤخذ من الرابط بواسطة useParams).
+2) يختار المستوى: ليسانس أو ماستر.
+3) يضغط على سداسي رقم n، فتُنفَّذ الدالة opensemester(n)
+   التي تبني الكائن selection وترسله إلى الباك اند:
+
+       const selection = {
+         faculter: "sience exact ", // اسم الكلية (قيمة ثابتة في الكود)
+         specialiter: dept, // التخصص من الرابط: IT / physique / math
+         Level: level, // المستوى: "licence" أو "master"
+         semester: n // رقم السداسي
+       }
+
+       fetch('/api', {
+         method: 'POST',
+         headers: { 'Content-Type': 'application/json' },
+         body: JSON.stringify(selection)
+       })
+
+4) الطلب يصل إلى app/api/route.tsx.
+5) الواجهة تضع الاستدعاء داخل try/catch، وفي حالة الخطأ تطبع الخطأ بـ console.log.
+
+
+6. كود الباك اند الحالي (app/api/route.tsx)
+---------------------------------------------
+    import { NextResponse } from "next/server";
+
+    type SELECTION = {
+      faculter?: string, // الكلية (اختياري)
+      specialiter: string, // التخصص (إجباري)
+      Level?: string, // المستوى (اختياري)
+      semester: any // رقم السداسي
+    }
+
+    export async function POST(request: Request) {
+      try {
+        const body: SELECTION = await request.json(); // قراءة JSON المرسل
+        console.log(body); // طباعته في الـ terminal
+        return NextResponse.json(body); // إرجاعه كما هو
+      } catch (error) {
+        console.log(error); // طباعة الخطأ
+      }
+    }
+
+شرح الكود:
+- النوع SELECTION يصف شكل البيانات التي ترسلها الواجهة.
+- دالة POST تُنفَّذ عند كل طلب POST إلى /api.
+- request.json() تقرأ جسم الطلب وتحوله إلى كائن JavaScript.
+- حالياً الدالة تطبع البيانات المستلمة في الـ terminal وتعيدها كما هي
+  في الرد (NextResponse.json(body)).
+- لا يوجد بعد اتصال بقاعدة بيانات ولا قائمة دروس في الرد.
+
+
+7. ملخص للباك اند
+------------------
+- نقطة الاتصال: POST /api
+- المدخل (JSON):
+      {
+        "faculter": string (اختياري),
+        "specialiter": string (إجباري) مثل: IT, physique, math,
+        "Level": string (اختياري) "licence" أو "master",
+        "semester": number من 1..6 (ليسانس) أو 1..4 (ماستر)
+      }
+
+
+================================================================================
+*/
+
